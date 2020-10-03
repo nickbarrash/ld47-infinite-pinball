@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BumperControl : MonoBehaviour
+public class BumperControl : ScoreableComponent
 {
     public float power = 100f;
-
-    ScorePoints points;
-    void Awake() {
-        points = GetComponent<ScorePoints>();
-    }
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.layer != LayerMask.NameToLayer("Ball")) {
@@ -24,8 +19,6 @@ public class BumperControl : MonoBehaviour
 
         collider.gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
 
-        if (points != null) {
-            points.score();
-        }
+        score();
     }
 }

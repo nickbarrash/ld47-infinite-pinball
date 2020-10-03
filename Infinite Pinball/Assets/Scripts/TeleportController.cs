@@ -20,8 +20,17 @@ public class TeleportController : MonoBehaviour
     public void teleport(TeleportGateDual gate, GameObject pinball) {
         pinball.transform.position = (
                 pinball.transform.position +
-                (getOtherGate(gate).transform.position - gate.transform.position)
-            ) * bufferMagnitude;
+                (
+                    (
+                        getOtherGate(gate).transform.position
+                    //- new Vector3(0, getOtherGate(gate).transform.localScale.y / 2, 0)
+                    ) -
+                    (
+                        gate.transform.position
+                    //+ new Vector3(0, gate.transform.localScale.y / 2, 0)
+                    )
+                )
+            ); // * bufferMagnitude;
         isTeleportFrame = true;
     }
 
