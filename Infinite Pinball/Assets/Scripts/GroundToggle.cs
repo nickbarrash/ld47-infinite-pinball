@@ -6,7 +6,9 @@ public class GroundToggle : MonoBehaviour
 {
     Material toggleMaterial;
 
-    bool isOn = false;
+    public Color onColor = new Color(1, 1, 0, 1);
+    public Color offColor = new Color(0.3f, 0.3f, 0, 1);
+    public bool isOn = false;
 
     void Start() {
         toggleMaterial = GetComponent<Renderer>().material;
@@ -14,13 +16,9 @@ public class GroundToggle : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collider) {
-        Debug.Log("here");
-
         if (collider.gameObject.layer != LayerMask.NameToLayer("Ball")) {
             return;
         }
-
-        Debug.Log("here2");
 
         isOn = !isOn;
 
@@ -29,9 +27,9 @@ public class GroundToggle : MonoBehaviour
 
     void UpdateColor() {
         if (isOn) {
-            toggleMaterial.SetColor("_Color", new Color(1, 1, 0, 1));
+            toggleMaterial.SetColor("_Color", onColor);
         } else {
-            toggleMaterial.SetColor("_Color", new Color(0.3f, 0.3f, 0, 1));
+            toggleMaterial.SetColor("_Color", offColor);
         }
     }
 }

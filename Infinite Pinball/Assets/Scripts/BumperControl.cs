@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BumperControl : MonoBehaviour
 {
+    public float power = 100f;
+
     ScorePoints points;
     void Awake() {
         points = GetComponent<ScorePoints>();
@@ -18,7 +20,7 @@ public class BumperControl : MonoBehaviour
             collider.gameObject.transform.position.x - transform.position.x,
             collider.gameObject.transform.position.y - transform.position.y,
             0
-        ).normalized * 100f;
+        ).normalized * power;
 
         collider.gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
 

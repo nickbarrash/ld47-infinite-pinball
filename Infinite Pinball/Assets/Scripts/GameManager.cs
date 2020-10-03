@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        points = GameObject.Find("Canvas/Points").GetComponent<TextMeshProUGUI>();
-        time = GameObject.Find("Canvas/Time").GetComponent<TextMeshProUGUI>();
-        best = GameObject.Find("Canvas/Best").GetComponent<TextMeshProUGUI>();
-        popup = GameObject.Find("Canvas/Popup").GetComponent<TextMeshProUGUI>();
+        points = GameObject.Find("GameOverlay/Points").GetComponent<TextMeshProUGUI>();
+        time = GameObject.Find("GameOverlay/Time").GetComponent<TextMeshProUGUI>();
+        best = GameObject.Find("GameOverlay/Best").GetComponent<TextMeshProUGUI>();
+        popup = GameObject.Find("GameOverlay/Popup").GetComponent<TextMeshProUGUI>();
     }
 
     void Start() {

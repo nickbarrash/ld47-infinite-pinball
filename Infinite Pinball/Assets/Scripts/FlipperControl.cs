@@ -6,7 +6,13 @@ public class FlipperControl : MonoBehaviour
 {
     HingeJoint hinge;
     JointSpring spring;
-    public string inputName = "Flipper";
+
+    public float power = 100000;
+    public float damper = 1000;
+    public float contractAngle = -25;
+    public float relaxAngle = 10;
+
+    public KeyCode activationKey;
 
     // Start is called before the first frame update
     void Start()
@@ -14,21 +20,29 @@ public class FlipperControl : MonoBehaviour
         hinge = GetComponent<HingeJoint>();
         hinge.useSpring = true;
 
-        SetSpring(10);
+        relax();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) {
-            SetSpring(-30);
+        if (Input.GetKeyDown(activationKey)) {
+            contract();
         }
-        if (Input.GetKeyUp(KeyCode.Z)) {
-            SetSpring(10);
+        if (Input.GetKeyUp(activationKey)) {
+            relax();
         }
     }
 
-    void SetSpring(float target) {
+    void contract() {
+        setSpring(contractAngle);
+    }
+
+    void relax() {
+        setSpring(relaxAngle);
+    }
+
+    void setSpring(float target) {
         spring = hinge.spring;
         spring.spring = 100000;
         spring.damper = 1000;
