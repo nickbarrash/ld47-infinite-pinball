@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BumperControl : MonoBehaviour
-
 {
+    ScorePoints points;
+    void Awake() {
+        points = GetComponent<ScorePoints>();
+    }
+
     private void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.layer != LayerMask.NameToLayer("Ball")) {
             return;
@@ -17,5 +21,9 @@ public class BumperControl : MonoBehaviour
         ).normalized * 100f;
 
         collider.gameObject.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+
+        if (points != null) {
+            points.score();
+        }
     }
 }
