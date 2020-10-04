@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void DecrementPoints(int pointsChange) {
-        points -= pointsChange * multiplier * 300;
+        points -= pointsChange * multiplier * 7;
         manager.setPoints(points, multiplier);
 
         if (points <= 0) {
