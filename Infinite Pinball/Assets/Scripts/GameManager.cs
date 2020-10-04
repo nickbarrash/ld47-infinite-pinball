@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     void Start() {
         setBest(-1);
         IntroScreen1();
-        blackOverlay.color = new Color32(0, 0, 0, 255);
+        blackOverlay.color = new Color32(0, 0, 0, 150);
     }
 
     // Update is called once per frame
@@ -71,14 +71,14 @@ public class GameManager : MonoBehaviour
         if (panelFadeTimer > 0) {
             panelFadeTimer -= Time.deltaTime;
 
-            byte visible = (byte)(255f - Mathf.Lerp(PANEL_FADE_DURATION, 0f, panelFadeTimer) * 255f);
+            byte visible = (byte)(150f - Mathf.Lerp(PANEL_FADE_DURATION, 0f, panelFadeTimer) * 150f);
             blackOverlay.color = new Color32(0, 0, 0, visible);
         }
 
         if(panelVisibleTimer > 0) {
             panelVisibleTimer -= Time.deltaTime;
             if (panelVisibleTimer <= 0) {
-                popupMessage("CONTROLS ARE:\n\nZ and M", 5);
+                popupMessage("CONTROLS ARE\n\nZ and M", 5);
                 panelFadeTimer = PANEL_FADE_DURATION;
             }
         }

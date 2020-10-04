@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start() {
         gameManager.setSound(sound);
+        play("theme", true);
     }
 
     // Update is called once per frame
@@ -43,8 +44,11 @@ public class AudioManager : MonoBehaviour
         gameManager.setSound(sound);
     }
 
-    public void play(string name) {
+    public void play(string name, bool loop = false) {
         if (sound) {
+            if (loop) {
+                soundMap[name].source.loop = true;
+            }
             soundMap[name].source.Play();
         }
     }
