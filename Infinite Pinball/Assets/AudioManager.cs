@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public bool sound = true;
+
     public Sound[] clips;
     public Dictionary<string, Sound> soundMap = new Dictionary<string, Sound>();
+
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         foreach (Sound s in clips) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -20,13 +26,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start() {
+        gameManager.setSound(sound);
+    }
+
     // Update is called once per frame
     void Update()
     {
         
     }
 
+    public void toggleSound() {
+        sound = !sound;
+        gameManager.setSound(sound);
+    }
+
     public void play(string name) {
-        soundMap[name].source.Play();
+        if (sound) {
+            soundMap[name].source.Play();
+        }
     }
 }

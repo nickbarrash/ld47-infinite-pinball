@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     public void GameOver() {
         manager.finishGame();
         ResetPoints();
-        manager.popupMessage("But can you do it faster?");
+        manager.popupMessage("But can you do it faster?", 3);
 
         foreach(ScoreableComponent component in FindObjectsOfType<ScoreableComponent>()) {
             component.resetState();
