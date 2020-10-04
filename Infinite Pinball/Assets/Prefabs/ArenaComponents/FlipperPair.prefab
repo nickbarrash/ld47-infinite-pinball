@@ -95,8 +95,16 @@ PrefabInstance:
       propertyPath: relaxAngle
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8130541159664573590, guid: e97ae186efa96eb4dac041d79d612c11, type: 3}
+      propertyPath: activationKey
+      value: 109
+      objectReference: {fileID: 0}
     - target: {fileID: 8130541159664573591, guid: e97ae186efa96eb4dac041d79d612c11, type: 3}
       propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130541159664573591, guid: e97ae186efa96eb4dac041d79d612c11, type: 3}
+      propertyPath: m_ConnectedAnchor.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -175,10 +183,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130541159664573590, guid: e97ae186efa96eb4dac041d79d612c11, type: 3}
       propertyPath: activationKey
-      value: 303
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 8130541159664573591, guid: e97ae186efa96eb4dac041d79d612c11, type: 3}
       propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130541159664573591, guid: e97ae186efa96eb4dac041d79d612c11, type: 3}
+      propertyPath: m_ConnectedAnchor.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
