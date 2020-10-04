@@ -44,8 +44,8 @@ public class FlipperControl : MonoBehaviour
 
     void setSpring(float target) {
         spring = hinge.spring;
-        spring.spring = 100000;
-        spring.damper = 1000;
+        spring.spring = power;
+        spring.damper = damper;
         spring.targetPosition = target;
         hinge.spring = spring;
     }
