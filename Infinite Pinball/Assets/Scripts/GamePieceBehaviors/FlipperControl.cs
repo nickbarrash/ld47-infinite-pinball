@@ -40,7 +40,6 @@ public class FlipperControl : MonoBehaviour
 
     void contract() {
         setSpring(contractAngle);
-        manager.play("click-1");
     }
 
     void relax() {

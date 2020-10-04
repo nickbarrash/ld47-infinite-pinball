@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestructableTarget : ScoreableComponent {
     AudioManager manager;
 
-    private void Awake() {
+    private void Start() {
         manager = FindObjectOfType<AudioManager>();
     }
 

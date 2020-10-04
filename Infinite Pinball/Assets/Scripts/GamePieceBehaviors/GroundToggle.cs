@@ -7,7 +7,7 @@ public class GroundToggle : ScoreableComponent
     Material toggleMaterial;
 
     public Color onColor = new Color(1, 1, 0, 1);
-    public Color offColor = new Color(0.3f, 0.3f, 0, 1);
+    public Color offColor = new Color(0.3f, 0.2f, 0, 1);
     public bool isOn = false;
 
     public string onSound = "basic-toggle-on";
@@ -28,8 +28,6 @@ public class GroundToggle : ScoreableComponent
         toggleMaterial = GetComponent<Renderer>().material;
         UpdateColor();
 
-
-
         List<string> names = new List<string>();
         Transform curr = transform;
         while (curr.parent != null) {
@@ -43,6 +41,15 @@ public class GroundToggle : ScoreableComponent
         twinTop = GameObject.Find("/ArenaTop/" + copyPath).GetComponent<GroundToggle>();
         twinBottom = GameObject.Find("/ArenaBottom/" + copyPath).GetComponent<GroundToggle>();
 
+    }
+
+    private void Update() {
+        if (offTimer > 0) {
+            offTimer -= Time.deltaTime;
+            if (offTimer <= 0) {
+                resetState();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider collider) {
@@ -60,13 +67,6 @@ public class GroundToggle : ScoreableComponent
                 turnOff();
             } else {
                 turnOn();
-            }
-        }
-
-        if (offTimer > 0) {
-            offTimer -= Time.deltaTime;
-            if (offTimer <= 0) {
-                turnOff();
             }
         }
 
@@ -93,6 +93,7 @@ public class GroundToggle : ScoreableComponent
         if (offDelay > 0) {
             offTimer = offDelay;
         }
+        activate();
     }
 
     void turnOff(bool playSound = true) {
@@ -101,6 +102,7 @@ public class GroundToggle : ScoreableComponent
         if (playSound) {
             manager.play(offSound);
         }
+        deactivate();
     }
 
     void UpdateColor() {

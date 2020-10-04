@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     Image blackOverlay;
 
-    float VISIBLE_DURATION = 2;
+    //float VISIBLE_DURATION = 2;
     float FADE_DURATION = 1;
 
     float visibleTimer = 0;
@@ -135,5 +135,9 @@ public class GameManager : MonoBehaviour
 
     public void setSound(bool sound) {
         soundButton.text = sound ? "Sound On" : "Sound Off";
+    }
+
+    public string getGameTime() {
+        return timerToString(gameTime);
     }
 }

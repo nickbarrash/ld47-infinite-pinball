@@ -10,9 +10,12 @@ public class ScoreManager : MonoBehaviour
 
     public int multiplier = 1;
 
+    AudioManager audioManager;
+
     // Start is called before the first frame update
     void Awake()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         manager = FindObjectOfType<GameManager>();
     }
 
@@ -33,7 +36,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void DecrementPoints(int pointsChange) {
-        points -= pointsChange * multiplier;
+        points -= pointsChange * multiplier * 300;
         manager.setPoints(points, multiplier);
 
         if (points <= 0) {
@@ -42,9 +45,10 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void GameOver() {
+        manager.popupMessage("Victory in " + manager.getGameTime() + "\nBut can you go faster?", 5);
+        audioManager.play("victory-1");
         manager.finishGame();
         ResetPoints();
-        manager.popupMessage("But can you do it faster?", 3);
 
         foreach(ScoreableComponent component in FindObjectsOfType<ScoreableComponent>()) {
             component.resetState();

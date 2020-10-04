@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
         foreach (Sound s in clips) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * 0.1f;
             s.source.pitch = s.pitch;
 
             soundMap[s.name] = s;
@@ -33,7 +33,9 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.M)) {
+            play("click-1");
+        }
     }
 
     public void toggleSound() {
