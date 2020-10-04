@@ -18,7 +18,7 @@ public class SideBumper : MonoBehaviour
 
         Debug.Log(collision.contacts[0].normal * power);
 
-        collision.gameObject.GetComponent<Rigidbody>().AddForce(collision.contacts[0].normal * power, ForceMode.Impulse);
+        collision.gameObject.GetComponent<Rigidbody>().AddForce(collision.contacts[0].normal * power * -1, ForceMode.Impulse);
 
         if (points != null) {
             points.score();
