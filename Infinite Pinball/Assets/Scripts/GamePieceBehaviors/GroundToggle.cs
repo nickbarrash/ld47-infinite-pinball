@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundToggle : MonoBehaviour
+public class GroundToggle : ScoreableComponent
 {
     Material toggleMaterial;
 
@@ -14,13 +14,35 @@ public class GroundToggle : MonoBehaviour
     public string offSound = "basic-toggle-off";
 
     AudioManager manager;
-    void Awake() {
-        manager = FindObjectOfType<AudioManager>();
-    }
+
+    public bool isLatch = false;
+    public float offDelay = -1f;
+    float offTimer = 0;
+
+    private string copyPath = "";
+    GroundToggle twinTop;
+    GroundToggle twinBottom;
 
     void Start() {
+        manager = FindObjectOfType<AudioManager>();
         toggleMaterial = GetComponent<Renderer>().material;
         UpdateColor();
+
+
+
+        List<string> names = new List<string>();
+        Transform curr = transform;
+        while (curr.parent != null) {
+            names.Add(curr.name);
+            curr = curr.parent;
+        }
+
+        names.Reverse();
+        copyPath = string.Join("/", names.ToArray());
+
+        twinTop = GameObject.Find("/ArenaTop/" + copyPath).GetComponent<GroundToggle>();
+        twinBottom = GameObject.Find("/ArenaBottom/" + copyPath).GetComponent<GroundToggle>();
+
     }
 
     private void OnTriggerEnter(Collider collider) {
@@ -28,18 +50,70 @@ public class GroundToggle : MonoBehaviour
             return;
         }
 
-        isOn = !isOn;
+        if (isLatch) {
+            if (!isOn) {
+                turnOn();
+            }
+        } else {
+            // toggle
+            if (isOn) {
+                turnOff();
+            } else {
+                turnOn();
+            }
+        }
+
+        if (offTimer > 0) {
+            offTimer -= Time.deltaTime;
+            if (offTimer <= 0) {
+                turnOff();
+            }
+        }
 
         UpdateColor();
     }
 
+    public void setOnLite(bool newIsOn) {
+        isOn = newIsOn;
+        UpdateColor();
+    }
+
+    public void setTwins(bool newIsOn) {
+        twinTop.setOnLite(newIsOn);
+        twinBottom.setOnLite(newIsOn);
+    }
+
+    void turnOn() {
+        setOnLite(true);
+        setTwins(true);
+
+        score();
+        manager.play(onSound);
+
+        if (offDelay > 0) {
+            offTimer = offDelay;
+        }
+    }
+
+    void turnOff(bool playSound = true) {
+        setOnLite(false);
+        setTwins(false);
+        if (playSound) {
+            manager.play(offSound);
+        }
+    }
+
     void UpdateColor() {
         if (isOn) {
-            manager.play(onSound);
             toggleMaterial.SetColor("_Color", onColor);
         } else {
-            manager.play(offSound);
+
             toggleMaterial.SetColor("_Color", offColor);
         }
+    }
+
+    public override void resetState() {
+        base.resetState();
+        turnOff(false);
     }
 }

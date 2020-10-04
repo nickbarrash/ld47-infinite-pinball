@@ -6,7 +6,9 @@ public class ScoreManager : MonoBehaviour
 {
     GameManager manager;
 
-    int points = 10;
+    public int points = 0;
+
+    public int multiplier = 1;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,14 +20,21 @@ public class ScoreManager : MonoBehaviour
         ResetPoints();
     }
 
+    public void Multiplier(int newMultiplier) {
+        if (newMultiplier > 1) {
+            multiplier *= newMultiplier;
+        }
+    }
+
     void ResetPoints() {
-        points = 10;
-        manager.setPoints(points);
+        multiplier = 1;
+        points = 999999;
+        manager.setPoints(points, multiplier);
     }
 
     public void DecrementPoints(int pointsChange) {
-        points -= pointsChange;
-        manager.setPoints(points);
+        points -= pointsChange * multiplier;
+        manager.setPoints(points, multiplier);
 
         if (points <= 0) {
             GameOver();
@@ -36,5 +45,9 @@ public class ScoreManager : MonoBehaviour
         manager.finishGame();
         ResetPoints();
         manager.popupMessage("But can you do it faster?");
+
+        foreach(ScoreableComponent component in FindObjectsOfType<ScoreableComponent>()) {
+            component.resetState();
+        }
     }
 }

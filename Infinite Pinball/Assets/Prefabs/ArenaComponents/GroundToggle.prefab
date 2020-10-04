@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2176767295649466039}
   - component: {fileID: 2176767295649466038}
   - component: {fileID: 2176767295649466033}
+  - component: {fileID: 5451928592907621870}
   m_Layer: 8
   m_Name: GroundToggle
   m_TagString: Untagged
@@ -109,3 +110,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f0bb43afe1130439f26f120700b72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onColor: {r: 1, g: 1, b: 0, a: 1}
+  offColor: {r: 0.3, g: 0.3, b: 0, a: 1}
+  isOn: 0
+  onSound: basic-toggle-on
+  offSound: basic-toggle-off
+--- !u!114 &5451928592907621870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176767295649466035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e876bcfbc16ad43be171d6732d974c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 276

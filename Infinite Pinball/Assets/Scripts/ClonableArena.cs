@@ -9,12 +9,12 @@ public class ClonableArena : MonoBehaviour
     public float offset = 150f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!instantiated) {
             instantiated = true;
-            Instantiate(gameObject, transform.position + new Vector3(0, offset, 0), Quaternion.identity);
-            Instantiate(gameObject, transform.position - new Vector3(0, offset, 0), Quaternion.identity);
+            Instantiate(gameObject, transform.position + new Vector3(0, offset, 0), Quaternion.identity).name = "ArenaTop";
+            Instantiate(gameObject, transform.position - new Vector3(0, offset, 0), Quaternion.identity).name = "ArenaBottom";
         }
     }
 

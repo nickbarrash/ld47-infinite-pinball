@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI time;
     TextMeshProUGUI best;
     TextMeshProUGUI popup;
+    TextMeshProUGUI multiplier;
 
     float VISIBLE_DURATION = 3;
     float FADE_DURATION = 1;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         points = GameObject.Find("GameOverlay/Points").GetComponent<TextMeshProUGUI>();
+        multiplier = GameObject.Find("GameOverlay/Multiplier").GetComponent<TextMeshProUGUI>();
         time = GameObject.Find("GameOverlay/Time").GetComponent<TextMeshProUGUI>();
         best = GameObject.Find("GameOverlay/Best").GetComponent<TextMeshProUGUI>();
         popup = GameObject.Find("GameOverlay/Popup").GetComponent<TextMeshProUGUI>();
@@ -53,8 +55,9 @@ public class GameManager : MonoBehaviour
         popup.color = new Color32(255, 255, 255, 255);
     }
 
-    public void setPoints(int currentPoints) {
+    public void setPoints(int currentPoints, int currentMult) {
         points.text = currentPoints.ToString();
+        multiplier.text = "x" + currentMult.ToString();
     }
 
     public string timerToString(float timer) {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScorePoints : MonoBehaviour
 {
     public int points;
-
+    public int multiplier = 1;
     ScoreManager manager;
 
     public void Awake() {
@@ -13,6 +13,7 @@ public class ScorePoints : MonoBehaviour
     }
 
     public void score() {
+        manager.Multiplier(multiplier);
         manager.DecrementPoints(points);
     }
 }

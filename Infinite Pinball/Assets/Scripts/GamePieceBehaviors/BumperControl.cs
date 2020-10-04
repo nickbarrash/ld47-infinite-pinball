@@ -7,7 +7,7 @@ public class BumperControl : ScoreableComponent
     AudioManager manager;
     public float power = 100f;
 
-    private void Awake() {
+    private void Start() {
         manager = FindObjectOfType<AudioManager>();
     }
 

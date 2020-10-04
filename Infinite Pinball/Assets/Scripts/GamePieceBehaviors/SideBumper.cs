@@ -8,7 +8,7 @@ public class SideBumper : ScoreableComponent {
     AudioManager manager;
 
 
-    void Awake() {
+    void Start() {
         manager = FindObjectOfType<AudioManager>();
     }
 
