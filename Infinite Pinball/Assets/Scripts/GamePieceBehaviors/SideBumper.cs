@@ -5,7 +5,6 @@ using UnityEngine;
 public class SideBumper : MonoBehaviour
 {
     public float power = 200f;
-    public float speedCap = 10f;
 
     ScorePoints points;
     void Awake() {
@@ -16,6 +15,8 @@ public class SideBumper : MonoBehaviour
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ball")) {
             return;
         }
+
+        Debug.Log(collision.contacts[0].normal * power);
 
         collision.gameObject.GetComponent<Rigidbody>().AddForce(collision.contacts[0].normal * power, ForceMode.Impulse);
 

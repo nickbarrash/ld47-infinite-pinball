@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestructableTarget : ScoreableComponent {
-    private void OnTriggerEnter(Collider collider) {
+    private void OnCollisionEnter(Collision collider) {
         if (collider.gameObject.layer != LayerMask.NameToLayer("Ball")) {
             return;
         }
