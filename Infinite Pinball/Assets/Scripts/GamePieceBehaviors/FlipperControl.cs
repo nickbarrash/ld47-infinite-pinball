@@ -14,11 +14,15 @@ public class FlipperControl : MonoBehaviour
 
     public KeyCode activationKey;
 
+    AudioManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
         hinge = GetComponent<HingeJoint>();
         hinge.useSpring = true;
+
+        manager = FindObjectOfType<AudioManager>();
 
         relax();
     }
@@ -36,6 +40,7 @@ public class FlipperControl : MonoBehaviour
 
     void contract() {
         setSpring(contractAngle);
+        manager.play("click-1");
     }
 
     void relax() {

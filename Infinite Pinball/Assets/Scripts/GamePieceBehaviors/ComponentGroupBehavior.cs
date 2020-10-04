@@ -5,19 +5,23 @@ using UnityEngine;
 public class ComponentGroupBehavior : ScoreableComponent {
     public List<ScoreableComponent> myComponents;
 
+    AudioManager manager;
+
     HashSet<ScoreableComponent> activeComponents = new HashSet<ScoreableComponent>();
     HashSet<ScoreableComponent> inactiveComponents = new HashSet<ScoreableComponent>();
 
     // Start is called before the first frame update
     public void Start()
     {
-        foreach(ScoreableComponent component in myComponents) {
+        manager = FindObjectOfType<AudioManager>();
+        foreach (ScoreableComponent component in myComponents) {
             component.registerGroup(this);
             inactiveComponents.Add(component);
         }
     }
 
     public virtual void allActivated() {
+        manager.play("group-score-1");
         score();
     }
 

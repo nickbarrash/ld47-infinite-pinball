@@ -10,6 +10,14 @@ public class GroundToggle : MonoBehaviour
     public Color offColor = new Color(0.3f, 0.3f, 0, 1);
     public bool isOn = false;
 
+    public string onSound = "basic-toggle-on";
+    public string offSound = "basic-toggle-off";
+
+    AudioManager manager;
+    void Awake() {
+        manager = FindObjectOfType<AudioManager>();
+    }
+
     void Start() {
         toggleMaterial = GetComponent<Renderer>().material;
         UpdateColor();
@@ -27,8 +35,10 @@ public class GroundToggle : MonoBehaviour
 
     void UpdateColor() {
         if (isOn) {
+            manager.play(onSound);
             toggleMaterial.SetColor("_Color", onColor);
         } else {
+            manager.play(offSound);
             toggleMaterial.SetColor("_Color", offColor);
         }
     }
